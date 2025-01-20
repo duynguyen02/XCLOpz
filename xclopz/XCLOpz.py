@@ -47,6 +47,34 @@ class XCLOpz:
         self.best_params = {}
         self.scores = {}
 
+    def prepare_data_v2(
+        self,
+        df: pd.DataFrame,
+        y_col: str,
+        x_cols: List[str],
+        test_size: float = 0.2,
+        copy_df: bool = False,
+    ):
+        if copy_df:
+            df = df.copy()
+
+        X = df[[x_cols]]
+        y = df[y_col]
+
+        X_temp, self.X_test, y_temp, self.y_test = train_test_split(
+            X, y, test_size=test_size, random_state=self.random_state
+        )
+        self.X_train, self.X_val, self.y_train, self.y_val = train_test_split(
+            X_temp, y_temp, test_size=test_size, random_state=self.random_state
+        )
+
+        print("Dataset dimensions:")
+        print(f"Train: {self.X_train.shape}")
+        print(f"Validation: {self.X_val.shape}")
+        print(f"Test: {self.X_test.shape}")
+
+        return self
+
     def prepare_data(
         self,
         df: pd.DataFrame,
