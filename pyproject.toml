@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "xclopz"
-version = "1.0.0"
+version = "1.0.1"
 description = "Training and optimizing XGBoost, CatBoost, and LightGBM all-in-one."
 authors = ["Duy Nguyen <duynguyen02.dev@gmail.com>"]
 license = "MIT"
